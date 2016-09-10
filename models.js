@@ -10,19 +10,19 @@ var CardSchema = new Schema({
 });
 
 var BoardstateSchema = new Schema({
-        theStack: [cards],
-    p1Library: [cards],
-    p1Hand: [cards],
-    p1Graveyard: [cards],
-    p1Exile: [cards],
-    p1Battlefield: [cards],
+        theStack: [CardSchema],
+    p1Library: [CardSchema],
+    p1Hand: [CardSchema],
+    p1Graveyard: [CardSchema],
+    p1Exile: [CardSchema],
+    p1Battlefield: [CardSchema],
     p1Life: Number,
 
-    p2Library: [cards],
-    p2Hand: [cards],
-    p2Graveyard: [cards],
-    p2Exile: [cards],
-    p2Battlefield: [cards],
+    p2Library: [CardSchema],
+    p2Hand: [CardSchema],
+    p2Graveyard: [CardSchema],
+    p2Exile: [CardSchema],
+    p2Battlefield: [CardSchema],
     p2Life: Number
 });
 
@@ -30,7 +30,7 @@ var CommentSchema  = new Schema({
         createdAt: {type: Date, default: Date.now},
     userName: {type: String, default: "Bob"},
     text: String,
-    subComments: [comment]
+    subComments: [{ type: mongoose.Types.ObjectId, ref: 'CommentSchema'}]
 });
 
 var ActionSchema = new Schema({
@@ -40,22 +40,23 @@ var ActionSchema = new Schema({
     cardName: String,
     zoneTo: String,
     zoneFrom: String,
-    boardstate: [boardstate],  //yeah... this is a crummy hack
-    subActions: [action]
+    boardstate: [BoardstateSchema],  //yeah... this is a crummy hack
+    subActions: [{ type: mongoose.Types.ObjectId, ref: 'ActionSchema'}]
+    
 });
 
 var GameSchema = new Schema({
-        decklist1: [cards],
-    decklist2: [cards],
-    sideboard1: [cards],
-    sideboard2: [cards],
+        decklist1: [CardSchema],
+    decklist2: [CardSchema],
+    sideboard1: [CardSchema],
+    sideboard2: [CardSchema],
     winner: Number,
-    boardstates: [boardstate],
-    actions: [action],
-    comments: [comment]
+    boardstates: [BoardstateSchema],
+    actions: [ActionSchema],
+    comments: [CommentSchema]
 });
 
 
-var Game - mongoose.model("Game", GameSchema);
+var Game = mongoose.model("Game", GameSchema);
 
 module.exports.Game = Game;
