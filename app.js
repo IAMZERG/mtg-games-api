@@ -18,6 +18,21 @@ app.set('view engine', 'jade');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
+
+var mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost:27017/sandbox");
+
+var db = mongoose.connection;
+
+db.on("error", function(err) {
+        console.error("connection error: ", err);
+});
+
+db.once("open", function() {
+        console.log("Database connection successful!");
+});
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
