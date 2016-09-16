@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var Game = require("../models").Game
+var Game = require("../models").Game;
 
 var game = new Game({
         decklist1: [{name: "Island", quantity: 60}],
@@ -52,17 +52,13 @@ var game = new Game({
                         cardName: "Grapeshot",
                         zoneTo: "theStack",
                         zoneFrom: "p1Hand",
-                        boardstate: [],  //normally, would put a before/after boardstate here.
+                        boardstates: [],  //normally, would put a before/after boardstate here.
 
                         subActions: []   //holds all actions related to casting a spell
                                          //e.g. cleaning up the board after a Wrath of God
                 }],
-                comments: [{text: "Ow.", subComments: [{text: "Yup!", userName: "Mike"}] }]
+                comments: [{text: "Ow." }]
 });
-                        
-                
-
-
 
 router.param("gID", function(req, res, next, id) {
         Game.findById(id, function(err, doc) {
@@ -77,11 +73,20 @@ router.param("gID", function(req, res, next, id) {
 });
 
 
-
+/*
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  Game.find({}, function(err, doc) {
+          if (!doc) {
+                  err = new Error("Not Found!");
+                  err.status = 404;
+                  return next(err);
+          } else if (!err) {
+                  res.json(doc);
+          }
+  });
 });
+*/
 
 /* GET all games? */
 router.get('/games/', function(req, res, next) {
@@ -100,11 +105,39 @@ router.get('/games/', function(req, res, next) {
 router.get('/games/:gID', function (req, res, next) {
         res.json(doc);
 });
+router.put('/games/:gID', function (req, res, next) {
+        //using the doc object, update it from the information sent in the request
+        doc = _.extend(doc, req,body);
+        doc.save(function (err) {
+                if (err) {
+                        return err;
+                } else {
+                        res.json(req.body);
+                }
+        });
+});
 /* GET game containing card */
 
 /* GET game with tag */
 
 /*POST game */
+// i.e. create new game
+
+router.post('/games/new', function (req, res, next) {
+        console.log(req.body.game);
+        var newGame = new Game({
+                decklist1: req.body.decklist1,
+            decklist2: req.body.decklist2,
+            comments: [{text: "This is a test"}]
+        });
+        newGame.save(function (err) {
+                if (err) {
+                        return err;
+                } else {
+                        res.json(newGame);
+                }
+        });
+});
 /* PUT game */
 /* DELETE game */
 
