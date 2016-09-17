@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
 var Game = require("../models").Game;
@@ -59,7 +60,14 @@ var game = new Game({
                 }],
                 comments: [{text: "Ow." }]
 });
+/*
+router.get("/", function (req,res, next) {
+        console.log("Blablabla");
+        next();
+});
+*/
 
+/*
 router.param("gID", function(req, res, next, id) {
         Game.findById(id, function(err, doc) {
                 if (err) return next(err);
@@ -67,11 +75,14 @@ router.param("gID", function(req, res, next, id) {
                         err = new Error("Not Found");
                         err.status = 404;
                         return next(err);
+                } else {
+                        req.game = doc;
+                        console.log(req.game);
+                        next();
                 }
-                res.game = doc;
         });
 });
-
+*/
 
 /*
 
@@ -89,7 +100,9 @@ router.get('/', function(req, res, next) {
 */
 
 /* GET all games? */
+
 router.get('/games/', function(req, res, next) {
+        console.log("I'm in the games route");
         Game.find({}, function(err, docs) {
                 if (!err) {
                         console.log(docs);
@@ -102,20 +115,43 @@ router.get('/games/', function(req, res, next) {
 
 /* GET game */
 
+
 router.get('/games/:gID', function (req, res, next) {
-        res.json(doc);
-});
-router.put('/games/:gID', function (req, res, next) {
-        //using the doc object, update it from the information sent in the request
-        doc = _.extend(doc, req,body);
-        doc.save(function (err) {
-                if (err) {
-                        return err;
+        Game.findById(req.params.gID, function(err, doc) {
+                if (err) return next(err);
+                if (!doc) {
+                        err = new Error("Not Found");
+                        err.status = 404;
+                        return next(err);
                 } else {
-                        res.json(req.body);
+                        res.json(doc);
+                }
+        });
+
+});
+
+router.put('/games/:gID/', function (req, res, next) {
+        //using the doc object, update it from the information sent in the request
+
+        Game.findById(req.params.gID, function(err, doc) {
+                if (err) return next(err);
+                if (!doc) {
+                        err = new Error("Not Found");
+                        err.status = 404;
+                        return next(err);
+                } else {
+                        doc.save(function (err) {
+                                if (err) {
+                                        return err;
+                                } else {
+                                        doc = _.extend(doc, req.body);
+                                        res.json(doc);
+                                }
+                        });
                 }
         });
 });
+
 /* GET game containing card */
 
 /* GET game with tag */
@@ -140,6 +176,24 @@ router.post('/games/new', function (req, res, next) {
 });
 /* PUT game */
 /* DELETE game */
+
+router.delete('/games/:gID', function (req, res, next) {
+        Game.findById(req.params.gID, function(err, doc) {
+                if (err) return next(err);
+                if (!doc) {
+                        err = new Error("Not Found");
+                        err.status = 404;
+                        return next(err);
+                } else {
+                        doc.remove(function () {
+                                doc.save(function () {
+                                        if (err) return err;
+                                        res.json(doc);
+                                });
+                        });
+                }
+        });
+});
 
 /* GET comments for game :id */
 /* POST comment for game :id */
