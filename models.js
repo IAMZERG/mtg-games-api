@@ -59,4 +59,58 @@ var GameSchema = new Schema({
 
 var Game = mongoose.model("Game", GameSchema);
 
+var UserSchema = new Schema({
+	email: {
+		type: String,
+		lowercase: true,
+		unique: true,
+		required: true
+	},
+		password: {
+			type: String, required: true 
+		},
+		profile: { 
+			firstName: {type: String}, 
+		lastName: {type: String }
+		},
+		role: { 
+			type: String, enum: ['Member', 'Client', 'Owner', 'Admin'],
+			default: 'Owner'
+		},
+		resetPasswordToken: {type: String },
+		resetPasswordExpires: {type: Date }
+},
+{
+		timestamps: true
+});
+
+UserSchema.pre("save", function(next) {
+	var user = this;
+	var SALT_FACTOR = 10;
+	if (!user.isModified('password')) return next();
+	var salt = bcrypt.genSalt(saltRounds, function (err, salt) {
+		bcrypt.hash(user.password, salt, function(err, hash) {
+			user.password = hash;
+			user.password.save(function (err) {
+				if (err) {
+					return next(err);
+				} else {
+					return next();
+				}
+			});
+		});
+	});
+});
+
+UserSchema.methods.comparePassword = function (candidatePassword, cb) {
+	bcrypt.compare(candidatePassword, this.password, function(err, hash) {
+		if (err) { return cb(err); }
+
+		cb(null, isMatch);
+	});
+};
+
+var User = mongoose.model("User", UserSchema);
+
 module.exports.Game = Game;
+module.exports.User = User;
