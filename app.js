@@ -1,10 +1,10 @@
-'use strict';
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require("passport");
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -72,6 +72,28 @@ if (app.get('env') === 'development') {
     });
   });
 }
+
+
+
+/***********************************
+	End of auth setup, start of requiring auth
+	**********************************/
+
+// Middleware to require login/auth
+const requireAuth = passport.authenticate('jwt', { session: false });  
+const requireLogin = passport.authenticate('local', { session: false });  
+
+//Roles
+
+// Constants for role types
+const REQUIRE_ADMIN = "Admin",  
+			REQUIRE_OWNER = "Owner",
+			REQUIRE_CLIENT = "Client",
+			REQUIRE_MEMBER = "Member";
+
+
+
+
 
 // production error handler
 // no stacktraces leaked to user

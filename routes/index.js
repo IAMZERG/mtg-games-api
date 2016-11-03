@@ -1,9 +1,10 @@
-'use strict';
-var express = require('express');
-var router = express.Router();
-var Game = require("../models").Game;
+const express = require('express');
+const router = express.Router();
+const Game = require("../models").Game;
+const Auth = require("./auth");
+//contains register, login, and roleAuthorization handlers
 
-var game = new Game({
+const game = new Game({
 	decklist1: [{name: "Island", quantity: 60}],
 		decklist2: [{name: "Forest", quantity: 60}],
 		sideboard1: [{name: "Counterspell", quantity: 4}],
