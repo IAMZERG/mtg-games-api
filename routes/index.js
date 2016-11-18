@@ -106,12 +106,12 @@ const game = new Game({
 
 /* GET all games? */
 
-router.get('/games/', requireAuth, function(req, res, next) {
+router.get('/games/', function(req, res, next) {
 	console.log("I'm in the games route");
 	Game.find({}, function(err, docs) {
 		if (!err) {
 			console.log(docs);
-			res.json(docs);
+			res.json({games: docs});
 		} else {
 			throw err;
 		}
