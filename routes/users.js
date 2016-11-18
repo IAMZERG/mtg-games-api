@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var AuthController = require("../controllers/authentication");
+var passport = require('passport');
 
+const requireAuth = passport.authenticate('jwt', { session: false });  
+const requireLogin = passport.authenticate('local', { session: false });  
 /* GET users listing. */
 /*
 router.get('/', function(req, res, next) {
@@ -9,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 */
 
-router.post('/login', AuthController.login);
+router.post('/login', requireLogin, AuthController.login);
 router.post('/register', AuthController.register);
 
 module.exports = router;

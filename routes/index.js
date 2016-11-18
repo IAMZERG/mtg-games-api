@@ -2,7 +2,11 @@ const express = require('express');
 const router = express.Router();
 const Game = require("../models").Game;
 const Auth = require("./auth");
+const passport = require('passport');
 //contains register, login, and roleAuthorization handlers
+
+const requireAuth = passport.authenticate('jwt', {session: false});
+const requireLogin = passport.authenticate('local', {session: false});
 
 const game = new Game({
 	decklist1: [{name: "Island", quantity: 60}],
@@ -102,7 +106,7 @@ const game = new Game({
 
 /* GET all games? */
 
-router.get('/games/', function(req, res, next) {
+router.get('/games/', requireAuth, function(req, res, next) {
 	console.log("I'm in the games route");
 	Game.find({}, function(err, docs) {
 		if (!err) {

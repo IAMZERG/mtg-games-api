@@ -47,14 +47,14 @@ var ActionSchema = new Schema({
 });
 
 var GameSchema = new Schema({
-        decklist1: [CardSchema],
-    decklist2: [CardSchema],
-    sideboard1: [CardSchema],
-    sideboard2: [CardSchema],
-    winner: Number,
-    boardstates: [BoardstateSchema],
-    actions: [ActionSchema],
-    comments: [CommentSchema]
+		decklist1: [CardSchema],
+		decklist2: [CardSchema],
+		sideboard1: [CardSchema],
+		sideboard2: [CardSchema],
+		winner: Number,
+		boardstates: [BoardstateSchema],
+		actions: [ActionSchema],
+		comments: [CommentSchema]
 });
 
 
@@ -102,7 +102,7 @@ UserSchema.methods.comparePassword = function (candidatePassword, cb) {
 	bcrypt.compare(candidatePassword, this.password, function(err, hash) {
 		if (err) { return cb(err); }
 
-		cb(null, isMatch);
+		cb(null, hash);
 	});
 };
 

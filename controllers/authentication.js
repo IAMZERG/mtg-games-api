@@ -66,24 +66,14 @@ function generateToken(user) {
 	});
 }
 
-function setUserInfo(request) {  
-	return {
-		_id: request._id,
-			firstName: request.profile.firstName,
-			lastName: request.profile.lastName,
-			email: request.email,
-			role: request.role,
-	};
-}
 
 
 function setUserInfo(request) {  
 	return {
-		_id: request._id,
 		firstName: request.profile.firstName,
 		lastName: request.profile.lastName,
 		email: request.email,
-		role: request.role,
+		role: request.role
 	};
 }
 
@@ -94,6 +84,7 @@ function setUserInfo(request) {
 exports.login = function(req, res, next) {
 
 	let userInfo = setUserInfo(req.user);
+	console.log(userInfo);
 
 	res.status(200).json({
 		token: 'JWT ' + generateToken(userInfo),
