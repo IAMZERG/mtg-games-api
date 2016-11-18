@@ -1,6 +1,7 @@
 'use strict';
 
 var mongoose = require("mongoose");
+var bcrypt = require('bcrypt');
 
 var Schema = mongoose.Schema;
 
@@ -90,14 +91,9 @@ UserSchema.pre("save", function(next) {
 	if (!user.isModified('password')) return next();
 	var salt = bcrypt.genSalt(SALT_FACTOR, function (err, salt) {
 		bcrypt.hash(user.password, salt, function(err, hash) {
+			if (err) return next(err);
 			user.password = hash;
-			user.password.save(function (err) {
-				if (err) {
-					return next(err);
-				} else {
-					return next();
-				}
-			});
+			next();
 		});
 	});
 });
