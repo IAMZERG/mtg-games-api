@@ -35,12 +35,13 @@ const jwtOptions = {
 	// Telling Passport to check authorization headers for JWT
 	jwtFromRequest: ExtractJwt.fromAuthHeader(),
 	// Telling Passport where to find the secret
-	secretOrKey: "ThisIsATestKey"
+	secretOrKey: config.secret
 };
 
 // Setting up JWT login strategy
 const jwtLogin = new JwtStrategy(jwtOptions, function(payload, done) {  
-	User.findById(payload._id, function(err, user) {
+	console.log(payload);
+	User.findOne({id: payload.sub}, function(err, user) {
 		if (err) { return done(err, false); }
 
 		if (user) {
@@ -87,7 +88,7 @@ exports.login = function(req, res, next) {
 	console.log(userInfo);
 
 	res.status(200).json({
-		token: 'JWT ' + generateToken(userInfo),
+		token: generateToken(userInfo),
 		user: userInfo
 	});
 }
@@ -146,7 +147,7 @@ exports.register = function(req, res, next) {
 		
 
 			res.status(201).json({
-				token: 'JWT ' + generateToken(userInfo),
+				token: generateToken(userInfo),
 				user: userInfo
 			});
 		});

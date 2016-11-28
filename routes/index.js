@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Game = require("../models").Game;
-const Auth = require("./auth");
+//const Auth = require("./auth");
 const passport = require('passport');
 //contains register, login, and roleAuthorization handlers
 
@@ -106,8 +106,8 @@ const game = new Game({
 
 /* GET all games? */
 
-router.get('/games/', function(req, res, next) {
-	console.log("I'm in the games route");
+router.get('/games/', requireAuth, function(req, res, next) {
+	console.log(req.user);
 	Game.find({}, function(err, docs) {
 		if (!err) {
 			console.log(docs);

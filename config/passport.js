@@ -7,7 +7,7 @@ const passport = require('passport'),
 
 const localOptions = { usernameField: 'email' };  
 
-This next portion is essentially straight from the passport documentation:
+//This next portion is essentially straight from the passport documentation:
 
 // Setting up local login strategy
 const localLogin = new LocalStrategy(localOptions, function(email, password, done) {  
