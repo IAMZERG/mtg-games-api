@@ -121,7 +121,7 @@ router.get('/games/', requireAuth, function(req, res, next) {
 /* GET game */
 
 
-router.get('/games/:gID', function (req, res, next) {
+router.get('/games/:gID', requireAuth, function (req, res, next) {
 	Game.findById(req.params.gID, function(err, doc) {
 		if (err) return next(err);
 		if (!doc) {
@@ -138,7 +138,7 @@ router.get('/games/:gID', function (req, res, next) {
 
 /* PUT game */
 
-router.put('/games/:gID/', function (req, res, next) {
+router.put('/games/:gID/', requireAuth,function (req, res, next) {
 	//using the doc object, update it from the information sent in the request
 
 	Game.findById(req.params.gID, function(err, doc) {
@@ -172,7 +172,7 @@ router.put('/games/:gID/', function (req, res, next) {
 /*POST game */
 // i.e. create new game
 
-router.post('/games/new', function (req, res, next) {
+router.post('/games/new', requireAuth,function (req, res, next) {
 	console.log(req.body.game);
 	var newGame = new Game({
 		decklist1: req.body.decklist1,
@@ -191,7 +191,7 @@ router.post('/games/new', function (req, res, next) {
 
 /* DELETE game */
 
-router.delete('/games/:gID', function (req, res, next) {
+router.delete('/games/:gID', requireAuth,function (req, res, next) {
 	Game.findById(req.params.gID, function(err, doc) {
 		if (err) return next(err);
 		if (!doc) {
