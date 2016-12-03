@@ -83,4 +83,4 @@ Get/set options for the currently logged in user.
 That is all.
 > Power at any cost.  
 
-### <a name="disclaimer">Note: This will not be the url of the API endpoint.  If you thought it would be and are disappointed, I am sorry.  Go buy that domain and make something special if you feel like it</a>
+### <a name="disclaimer"></a>Note: This will not be the url of the API endpoint.  If you thought it would be and are disappointed, I am sorry.  Go buy that domain and make something special if you feel like it.
