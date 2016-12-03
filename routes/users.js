@@ -12,7 +12,7 @@ router.get('/', function(req, res, next) {
 });
 */
 
-router.post('/login', requireLogin, AuthController.login);
-router.post('/register', AuthController.register);
+router.post('/api/v1/login', requireLogin, AuthController.login);
+router.post('/api/v1/register', AuthController.register);
 
 module.exports = router;

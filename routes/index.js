@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const gameRoutes = require("./games");
 const Game = require("../models").Game;
 //const Auth = require("./auth");
 const passport = require('passport');
@@ -106,62 +107,17 @@ const game = new Game({
 
 /* GET all games? */
 
-router.get('/games/', requireAuth, function(req, res, next) {
-	console.log(req.user);
-	Game.find({}, function(err, docs) {
-		if (!err) {
-			console.log(docs);
-			res.json({games: docs});
-		} else {
-			throw err;
-		}
-	});
-});
+
+router.get('/api/v1/games/', requireAuth, gameRoutes.getGames);
 
 /* GET game */
 
 
-router.get('/games/:gID', requireAuth, function (req, res, next) {
-	Game.findById(req.params.gID, function(err, doc) {
-		if (err) return next(err);
-		if (!doc) {
-			err = new Error("Not Found");
-			err.status = 404;
-			return next(err);
-		} else {
-			res.json(doc);
-		}
-	});
-
-});
+router.get('/api/v1/games/:gID', requireAuth, gameRoutes.getGame);
 
 
 /* PUT game */
-
-router.put('/games/:gID/', requireAuth,function (req, res, next) {
-	//using the doc object, update it from the information sent in the request
-
-	Game.findById(req.params.gID, function(err, doc) {
-		if (err) return next(err);
-		if (!doc) {
-			err = new Error("Not Found");
-			err.status = 404;
-			return next(err);
-		} else {
-			for(var key in req.body) {
-				doc[key] = req.body[key];
-			}
-			doc.save(function (err) {
-				if (err) {
-					return err;
-				} else {
-					res.json(doc);
-				}
-			});
-		}
-	});
-});
-
+router.put('/api/v1/games/:gID/', requireAuth, gameRoutes.putGame); 
 
 
 /* GET game containing card */
@@ -172,42 +128,12 @@ router.put('/games/:gID/', requireAuth,function (req, res, next) {
 /*POST game */
 // i.e. create new game
 
-router.post('/games/new', requireAuth,function (req, res, next) {
-	console.log(req.body.game);
-	var newGame = new Game({
-		decklist1: req.body.decklist1,
-			decklist2: req.body.decklist2,
-			comments: [{text: "This is a test"}]
-	});
-	newGame.save(function (err) {
-		if (err) {
-			return err;
-		} else {
-			res.json(newGame);
-		}
-	});
-});
+router.post('/api/v1/games/new', requireAuth, gameRoutes.newGame);
 
 
 /* DELETE game */
 
-router.delete('/games/:gID', requireAuth,function (req, res, next) {
-	Game.findById(req.params.gID, function(err, doc) {
-		if (err) return next(err);
-		if (!doc) {
-			err = new Error("Not Found");
-			err.status = 404;
-			return next(err);
-		} else {
-			doc.remove(function () {
-				doc.save(function () {
-					if (err) return err;
-					res.json(doc);
-				});
-			});
-		}
-	});
-});
+router.delete('/api/v1/games/:gID', requireAuth, gameRoutes.deleteGame);
 
 /* GET comments for game :id */
 /* POST comment for game :id */

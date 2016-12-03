@@ -6,12 +6,12 @@ var bcrypt = require('bcrypt');
 var Schema = mongoose.Schema;
 
 var CardSchema = new Schema({
-        name: String,
+  name: String,
     quantity: Number
 });
 
 var BoardstateSchema = new Schema({
-        theStack: [CardSchema],
+  theStack: [CardSchema],
     p1Library: [CardSchema],
     p1Hand: [CardSchema],
     p1Graveyard: [CardSchema],
@@ -26,33 +26,36 @@ var BoardstateSchema = new Schema({
     p2Battlefield: [CardSchema],
     p2Life: Number
 });
+/* eventually, have this pull a boardstateSettings hash
+   from the Options item?  Will think of a way to 'dynamify' this.
+   */
 
 var CommentSchema  = new Schema({
         createdAt: {type: Date, default: Date.now},
-    userName: {type: String, default: "Bob"},
+    user: String,
     text: String
 });
 
 var ActionSchema = new Schema({
-        player: Number,
+  player: Number,
     turn: Number,
     description: String,
-    cardName: String,
+    card: String,
     zoneTo: String,
     zoneFrom: String,
     boardstate: [BoardstateSchema]  //yeah... this is a crummy hack
-    
 });
 
+
 var GameSchema = new Schema({
-		decklist1: [CardSchema],
-		decklist2: [CardSchema],
-		sideboard1: [CardSchema],
-		sideboard2: [CardSchema],
-		winner: Number,
-		boardstates: [BoardstateSchema],
-		actions: [ActionSchema],
-		comments: [CommentSchema]
+  decklist1: [CardSchema],
+    decklist2: [CardSchema],
+    sideboard1: [CardSchema],
+    sideboard2: [CardSchema],
+    winner: Number,
+    boardstates: [BoardstateSchema],
+    actions: [ActionSchema],
+    comments: [CommentSchema]
 });
 
 
