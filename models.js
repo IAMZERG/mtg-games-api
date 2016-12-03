@@ -30,8 +30,7 @@ var BoardstateSchema = new Schema({
 var CommentSchema  = new Schema({
         createdAt: {type: Date, default: Date.now},
     userName: {type: String, default: "Bob"},
-    text: String,
-    subComments: [{ type: mongoose.Types.ObjectId, ref: 'CommentSchema'}]
+    text: String
 });
 
 var ActionSchema = new Schema({
@@ -41,8 +40,7 @@ var ActionSchema = new Schema({
     cardName: String,
     zoneTo: String,
     zoneFrom: String,
-    boardstate: [BoardstateSchema],  //yeah... this is a crummy hack
-    subActions: [{ type: mongoose.Types.ObjectId, ref: 'ActionSchema'}]
+    boardstate: [BoardstateSchema]  //yeah... this is a crummy hack
     
 });
 
