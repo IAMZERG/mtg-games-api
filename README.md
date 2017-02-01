@@ -7,7 +7,9 @@
 3. Get to work on the front end of the app.
 4. Figure out what additional endpoints to support, or make the front-end do all the heavy lifting (makes the most sense since this targets desktops primarily).
 6. Open up the API to be flexible enough to handle other games (version 2 territory).
+
 ##Planned Endpoints
+------
 
 
 ###Games and Decklists
