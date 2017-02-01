@@ -14,75 +14,102 @@
 
 ###Games and Decklists
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/games/](#disclaimer) 
+[imawesome.bob/api/v1/games/](#disclaimer) 
 
 Fetches all games for the currently logged in user.  Might be configured to get a subset of games using query params.
 
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/actions/](#disclaimer) 
+[imawesome.bob/api/v1/actions/](#disclaimer) 
 
 Fetches actions from previous games for data analytics and to speed up playtesting.
 
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/boardstates/](#disclaimer) 
+[imawesome.bob/api/v1/boardstates/](#disclaimer) 
 
 Fetches boardstates from previous games for data analytics and to speed up playtesting.
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/decklists/](#disclaimer) 
+[imawesome.bob/api/v1/decklists/](#disclaimer) 
 
 Features decklists the currently logged in user has played with.
 
 
 ###Users
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/login/](#disclaimer) 
+[imawesome.bob/api/v1/login/](#disclaimer) 
 
 If you don't know what this is for, I'm sorry... I can't help you there.
 
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/register/](#disclaimer) 
+[imawesome.bob/api/v1/register/](#disclaimer) 
 
 See description above.
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/options/](#disclaimer) 
+[imawesome.bob/api/v1/options/](#disclaimer) 
 
 Get/set options for the currently logged in user.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 That is all.
 > Power at any cost.  
+
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
 
 ### <a name="disclaimer"></a>Note: This will not be the url of the API endpoint.  If you thought it would be and are disappointed, I am sorry.  Go buy that domain and make something special if you feel like it.
