@@ -30,7 +30,7 @@ Fetches boardstates from previous games for data analytics and to speed up playt
 
 [imawesome.bob/api/v1/decklists/](#disclaimer) 
 
-Features decklists the currently logged in user has played with.
+Fetches decklists the currently logged in user has played with.
 
 
 ###Users
