@@ -18,6 +18,10 @@
 
 Fetches all games for the currently logged in user.  Might be configured to get a subset of games using query params.
 
+[imawesome.bob/api/v1/games/:id](#disclaimer) 
+
+Fetches a game from the logged in user.  Might be configured to get a subset of games using query params.
+
 
 [imawesome.bob/api/v1/actions/](#disclaimer) 
 
