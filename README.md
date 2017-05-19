@@ -1,18 +1,18 @@
-#Welcome to your new Confidant and playtesting buddy 
+# Welcome to your new Confidant and playtesting buddy 
 ---
 
-##Todo
+## Todo
 1. Polish off authorization/authentication.
 2. Clean up the models.
 3. Get to work on the front end of the app.
 4. Figure out what additional endpoints to support, or make the front-end do all the heavy lifting (makes the most sense since this targets desktops primarily).
 6. Open up the API to be flexible enough to handle other games (version 2 territory).
 
-##Planned Endpoints
+## Planned Endpoints
 ------
 
 
-###Games and Decklists
+### Games and Decklists
 
 [imawesome.bob/api/v1/games/](#disclaimer) 
 
@@ -33,7 +33,7 @@ Fetches boardstates from previous games for data analytics and to speed up playt
 Fetches decklists the currently logged in user has played with.
 
 
-###Users
+### Users
 
 [imawesome.bob/api/v1/login/](#disclaimer) 
 
@@ -51,68 +51,5 @@ Get/set options for the currently logged in user.
 That is all.
 > Power at any cost.  
 
-```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
 ### <a name="disclaimer"></a>Note: This will not be the url of the API endpoint.  If you thought it would be and are disappointed, I am sorry.  Go buy that domain and make something special if you feel like it.
