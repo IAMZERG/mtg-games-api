@@ -15,34 +15,104 @@
 
 ### Games and Decklists
 
-[imawesome.bob/api/v1/games/](#disclaimer) 
+GET [imawesome.bob/api/v1/games/](#disclaimer) 
+
+Sample Request Headers:
+```
+Authorization: "JWT TOKEN.GOES.HERE"
+```
+
+Sample Response with a single game (Note: format of games, decklists, etc. is in flux.  Subject to change):
+```
+games: [{decklist1: [{name: "Island", quantity: 60}],
+		decklist2: [{name: "Forest", quantity: 60}],
+		sideboard1: [{name: "Counterspell", quantity: 4}],
+		sideboard2: [{name: "Counterspell", quantity: 4}],
+		winner: 1,
+		boardstates: [
+{
+	theStack: [
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1},
+{name: "Grapeshot", quantity: 1} ],
+	p1Library: [],
+	p2Library: [],
+	p1Hand: [],
+	p2Hand: [],
+	p1Graveyard: [],
+	p2Graveyard: [],
+	p1Battlefield: [],
+	p2Battlefield: [],
+	p1Exile: [],
+	p2Exile: [],
+	p1Life: 20,
+	p2Life: 20 
+	} ],
+	actions: [
+{
+	player: 1,
+	turn: 1,
+	description: "First turn kill (this is a test action)",
+	cardName: "Grapeshot",
+	zoneTo: "theStack",
+	zoneFrom: "p1Hand",
+	boardstates: [],  //normally, would put a before/after boardstate here.
+
+	subActions: []
+}],
+	comments: [{text: "Ow." }]
+}]
+```
 
 Fetches all games for the currently logged in user.  Might be configured to get a subset of games using query params.
 
-[imawesome.bob/api/v1/games/:id](#disclaimer) 
+GET [imawesome.bob/api/v1/games/:id](#disclaimer) 
 
-Fetches a game from the logged in user.  Might be configured to get a subset of games using query params.
+Fetches a game from the logged in user.
 
 
-[imawesome.bob/api/v1/actions/](#disclaimer) 
+GET [imawesome.bob/api/v1/actions/](#disclaimer) 
 
 Fetches actions from previous games for data analytics and to speed up playtesting.
 
 
-[imawesome.bob/api/v1/boardstates/](#disclaimer) 
+GET [imawesome.bob/api/v1/boardstates/](#disclaimer) 
 
-Fetches boardstates from previous games for data analytics and to speed up playtesting.
+Fetches boardstates from previous games.
 
-[imawesome.bob/api/v1/decklists/](#disclaimer) 
+GET [imawesome.bob/api/v1/decklists/](#disclaimer) 
 
 Fetches decklists the currently logged in user has played with.
 
 
 ### Users
 
-POST [somecrazylongurlbecausebbqpwnsauce.com/api/v1/login/](#disclaimer) 
+POST [imawesome.bob/api/v1/login/](#disclaimer) 
 
-Response:
+Sample Request Body:
+{
+  email: "bob@happytreepainting.org"
+  password: "bobisawesome"
+}
+
+Success Response:
 ```
 {
   token: "JWT.RETURNED.HERE",
@@ -55,13 +125,31 @@ Response:
 }
 ```
 
-[imawesome.bob/api/v1/register/](#disclaimer) 
+POST [imawesome.bob/api/v1/register/](#disclaimer) 
 
-See description above.
+Sample request body:
+```
+{
+  firstName: "Bob",
+  lastname: "Ross",
+  email: "bob@happytreepainting.org",
+  password: "bobisawesome"
+}
+```
 
-[imawesome.bob/api/v1/options/](#disclaimer) 
-
-Get/set options for the currently logged in user.
+Success Response:
+```
+{
+  token: "JWT.RETURNED.HERE",
+  user: {
+    firstName: "Bob",
+    lastName: "Ross",
+    email: "bob@happytreepainting.org",
+    role: "Owner"
+  }
+}
+```
+  
 
 That is all.
 > Power at any cost.  
