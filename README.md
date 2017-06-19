@@ -111,12 +111,13 @@ Fetches decklists the currently logged in user has played with.
 ### Users
 
 POST [imawesome.bob/api/v1/login/](#) 
-
+```
 Sample Request Body:
 {
   email: "bob@happytreepainting.org"
   password: "bobisawesome"
 }
+```
 
 Success Response:
 ```
