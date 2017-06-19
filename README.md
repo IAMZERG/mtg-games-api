@@ -1,4 +1,4 @@
-# Welcome to your new playtesting buddy
+# The Source for MTG Decklists and Gameplay
 ---
 
 ## Todo
@@ -93,7 +93,7 @@ Fetches a game from the logged in user.
 
 GET [imawesome.bob/api/v1/actions/](#) 
 
-Fetches actions from previous games for data analytics and to speed up playtesting.
+Fetches actions from previous games.
 
 <hr>
 
@@ -130,6 +130,8 @@ Success Response:
   }
 }
 ```
+
+<hr>
 
 POST [imawesome.bob/api/v1/register/](#) 
 
