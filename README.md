@@ -83,19 +83,25 @@ games: [{decklist1: [{name: "Island", quantity: 60}],
 
 Fetches all games for the currently logged in user.  Might be configured to get a subset of games using query params.
 
+<hr>
+
 GET [imawesome.bob/api/v1/games/:id](#) 
 
 Fetches a game from the logged in user.
 
+<hr>
 
 GET [imawesome.bob/api/v1/actions/](#) 
 
 Fetches actions from previous games for data analytics and to speed up playtesting.
 
+<hr>
 
 GET [imawesome.bob/api/v1/boardstates/](#) 
 
 Fetches boardstates from previous games.
+
+<hr>
 
 GET [imawesome.bob/api/v1/decklists/](#) 
 
