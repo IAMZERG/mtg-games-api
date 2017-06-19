@@ -148,7 +148,7 @@ Sample request body:
 Success Response:
 ```
 {
-  token: "JWT.RETURNED.HERE",
+  token: "TOKEN.RETURNED.HERE",
   user: {
     firstName: "Bob",
     lastName: "Ross",
