@@ -51,8 +51,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.use('/', routes);
+// /api/v1/games....
+
 app.use('/users', users);
+// /api/v1/register
+// /api/v1/login
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

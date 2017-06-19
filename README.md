@@ -33,10 +33,20 @@ Features decklists the currently logged in user has played with.
 
 ###Users
 
-[somecrazylongurlbecausebbqpwnsauce.com/api/v1/login/](#disclaimer) 
+POST [somecrazylongurlbecausebbqpwnsauce.com/api/v1/login/](#disclaimer) 
 
-If you don't know what this is for, I'm sorry... I can't help you there.
-
+Response:
+```
+{
+  token: "JWT.RETURNED.HERE",
+  user: {
+    firstName: "Bob",
+    lastName: "Ross",
+    email: "bob@happytreepainting.org",
+    role: "Owner"
+  }
+}
+```
 
 [somecrazylongurlbecausebbqpwnsauce.com/api/v1/register/](#disclaimer) 
 
