@@ -1,16 +1,4 @@
 # The Source for MTG Decklists and Gameplay
----
-
-## Todo
-0. Get documentaton in order.
-1. Polish off authorization/authentication.
-2. Clean up the models.
-3. Get to work on the front end of the app.
-4. Figure out what additional endpoints to support, or make the front-end do all the heavy lifting (makes the most sense since this targets desktops primarily).
-6. Open up the API to be flexible enough to handle other games (version 2 territory).
-
-## Planned Endpoints
-------
 
 
 ### Games and Decklists
@@ -85,9 +73,15 @@ Fetches all games for the currently logged in user.  Might be configured to get 
 
 <hr>
 
+POST [imawesome.bob/api/v1/games/](#) 
+
+Add a game for the currently logged in user.
+
+<hr>
+
 GET [imawesome.bob/api/v1/games/:id](#) 
 
-Fetches a game from the logged in user.
+Fetches a game for the logged in user.
 
 <hr>
 
@@ -159,4 +153,11 @@ Success Response:
 }
 ```
   
+## Todo
+0. Get documentaton in order.
+1. Polish off authorization/authentication.
+2. Clean up the models.
+3. Get to work on the front end of the app.
+4. Figure out what additional endpoints to support, or make the front-end do all the heavy lifting (makes the most sense since this targets desktops primarily).
+6. Open up the API to be flexible enough to handle other games (version 2 territory).
 
