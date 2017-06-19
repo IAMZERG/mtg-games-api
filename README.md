@@ -1,4 +1,4 @@
-# Welcome to your new Confidant and playtesting buddy 
+# Welcome to your new playtesting buddy
 ---
 
 ## Todo
@@ -15,7 +15,7 @@
 
 ### Games and Decklists
 
-GET [imawesome.bob/api/v1/games/](#disclaimer) 
+GET [imawesome.bob/api/v1/games/](#)
 
 Sample Request Headers:
 ```
@@ -83,28 +83,28 @@ games: [{decklist1: [{name: "Island", quantity: 60}],
 
 Fetches all games for the currently logged in user.  Might be configured to get a subset of games using query params.
 
-GET [imawesome.bob/api/v1/games/:id](#disclaimer) 
+GET [imawesome.bob/api/v1/games/:id](#) 
 
 Fetches a game from the logged in user.
 
 
-GET [imawesome.bob/api/v1/actions/](#disclaimer) 
+GET [imawesome.bob/api/v1/actions/](#) 
 
 Fetches actions from previous games for data analytics and to speed up playtesting.
 
 
-GET [imawesome.bob/api/v1/boardstates/](#disclaimer) 
+GET [imawesome.bob/api/v1/boardstates/](#) 
 
 Fetches boardstates from previous games.
 
-GET [imawesome.bob/api/v1/decklists/](#disclaimer) 
+GET [imawesome.bob/api/v1/decklists/](#) 
 
 Fetches decklists the currently logged in user has played with.
 
 
 ### Users
 
-POST [imawesome.bob/api/v1/login/](#disclaimer) 
+POST [imawesome.bob/api/v1/login/](#) 
 
 Sample Request Body:
 {
@@ -125,7 +125,7 @@ Success Response:
 }
 ```
 
-POST [imawesome.bob/api/v1/register/](#disclaimer) 
+POST [imawesome.bob/api/v1/register/](#) 
 
 Sample request body:
 ```
@@ -151,8 +151,3 @@ Success Response:
 ```
   
 
-That is all.
-> Power at any cost.  
-
-
-### <a name="disclaimer"></a>Note: This will not be the url of the API endpoint.  If you thought it would be and are disappointed, I am sorry.  Go buy that domain and make something special if you feel like it.
