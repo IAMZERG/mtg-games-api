@@ -54,10 +54,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/', routes);
+app.use('/', routes, users);
 // /api/v1/games....
 
-app.use('/users', users);
 // /api/v1/register
 // /api/v1/login
 

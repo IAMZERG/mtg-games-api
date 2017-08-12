@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken'),
 			crypto = require('crypto'),
 			config = require('../config/main');
+      mailer = require('../helpers/mailer');
 /************************************
 	User auth using JWT and passport
 	***********************************/
@@ -11,6 +12,7 @@ const passport = require('passport'),
 			JwtStrategy = require('passport-jwt').Strategy,
 			ExtractJwt = require('passport-jwt').ExtractJwt,
 			LocalStrategy = require('passport-local');
+      Mailgun = require("mailgun-js");
 
 
 const localOptions = { usernameField: 'email' };  
@@ -132,26 +134,27 @@ exports.register = function(req, res, next) {
 			email: email,
 				password: password,
 				profile: { firstName: firstName, lastName: lastName }
-		});
+    });
 
-		user.save(function(err, user) {
-			if (err) { return next(err); }
+    user.save(function(err, user) {
+      if (err) { return next(err); }
 
-			// Subscribe member to Mailchimp list
-			// mailchimp.subscribeToNewsletter(user.email);
+      var mailgun = new Mailgun( {apiKey: process.env.MAILGUN_TEST_API, domain: "sandbox162dbbc554f24375bd48b39da41df307.mailgun.org" });
 
-			// Respond with JWT if user was created
-
-			console.log(user);
-			let userInfo = setUserInfo(user);
-		
-
-			res.status(201).json({
-				token: generateToken(userInfo),
-				user: userInfo
-			});
-		});
-	});
+      var data = {
+        from: "inventor487@gmail.com",
+      to: "inventor487@gmail.com",
+      subject: "My message.  This is a test",
+      html: "Yes, this is a test."
+      };
+      mailer.sendMail(data);
+      let userInfo = setUserInfo(user);
+      res.status(201).json({
+        token: generateToken(userInfo),
+        user: userInfo
+      });
+    });
+  }
 }
 
 
