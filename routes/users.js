@@ -14,5 +14,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/api/v1/login', requireLogin, AuthController.login);
 router.post('/api/v1/register', AuthController.register);
+router.post('/api/vl/request-reset', PasswordController.requestReset);
+router.post('/api/vl/complete-reset', PasswordController.completeReset);
 
 module.exports = router;
