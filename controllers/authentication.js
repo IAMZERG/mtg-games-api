@@ -139,14 +139,14 @@ exports.register = function(req, res, next) {
     user.save(function(err, user) {
       if (err) { return next(err); }
 
-      var mailgun = new Mailgun( {apiKey: process.env.MAILGUN_TEST_API, domain: "sandbox162dbbc554f24375bd48b39da41df307.mailgun.org" });
 
       var data = {
         from: "inventor487@gmail.com",
         to: "inventor487@gmail.com",
-        subject: "My message.  This is a test",
-        html: "Yes, this is a test."
+        subject: "Welcome to the best MTG games API ever!",
+        html: "<h1>Howdy!</h1><p>Hope you're doing well, and that you enjoy the product!</p>"
       };
+
       mailer.sendMail(data);
       let userInfo = setUserInfo(user);
       res.status(201).json({
@@ -154,7 +154,7 @@ exports.register = function(req, res, next) {
         user: userInfo
       });
     });
-  }
+  });
 }
 
 
